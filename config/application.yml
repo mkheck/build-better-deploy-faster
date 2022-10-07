@@ -1,0 +1,39 @@
+# COMMON APPLICATION PROPERTIES
+
+server:
+  # start services on random port by default
+  port: 0
+  # The stop processing uses a timeout which provides a grace period during which existing requests will be allowed to complete but no new requests will be permitted
+  shutdown: graceful
+
+# Enable all actuator endpoints FOR DEMO PURPOSES ONLY!
+management.endpoints.web.exposure.include: "*"
+
+# Logging
+logging.level.org.springframework: INFO
+
+# Metrics
+management:
+  endpoint:
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+
+# testplane: Lance
+
+# test:
+#   plane: Saratoga
+
+# bestplane: '{cipher}af3ac2cda0bc35f0c55f76f5e2d57d11b8e93078790662af40918e2e61554146'
+
+avwx:
+  token: '{cipher}a55eebf22029f129c7aab38026ea536f4b4f2199a1d176215ec81f1b12a791afa4fce34cc08668090688654be307322f968717ec09728e842537f403c05b5b80'

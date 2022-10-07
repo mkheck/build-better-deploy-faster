@@ -1,0 +1,60 @@
+spring:
+  profiles: default
+  cloud:
+    gateway:
+      routes:
+      - id: report
+        uri: lb://report-service
+        predicates:
+        - Path=/report/**
+        filters:
+        - RewritePath=/report, /
+      - id: ap
+        uri: lb://airport-service/
+        predicates:
+        - Path=/airport/**
+        filters:
+        - StripPrefix=1
+      - id: wx
+        uri: lb://weather-service/
+        predicates:
+        - Path=/weather/**
+        filters:
+        - StripPrefix=1
+      - id: cond
+        uri: lb://conditions-service/
+        predicates:
+        - Path=/conditions/**
+        filters:
+        - StripPrefix=1
+
+eureka:
+  instance:
+    # enable to register multiple app instances with a random server port
+    instance-id: ${spring.application.name}:${random.uuid}
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  zipkin:
+    baseUrl: http://tracing-service:9411
+
+server:
+  port: ${PORT:8080}
+  compression:
+    enabled: true
+    mime-types: application/json,text/css,application/javascript
+    min-response-size: 2048
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery-service:8761/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
