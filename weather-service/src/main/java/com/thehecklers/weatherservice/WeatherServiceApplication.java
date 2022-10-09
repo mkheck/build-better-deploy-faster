@@ -14,7 +14,6 @@ import reactor.core.publisher.Mono;
 
 import java.time.ZonedDateTime;
 
-@EnableDiscoveryClient
 @SpringBootApplication
 public class WeatherServiceApplication {
 
