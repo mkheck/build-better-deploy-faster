@@ -13,7 +13,6 @@ import reactor.core.publisher.Flux;
 
 import java.time.ZonedDateTime;
 
-@EnableDiscoveryClient
 @SpringBootApplication
 public class ConditionsServiceApplication {
 
